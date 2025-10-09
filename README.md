@@ -62,6 +62,24 @@ if command -v bat > /dev/null 2>&1; then
 fi
 ```
 
+## Customisation
+
+You can change the flags you want for displaying in the file
+
+```sh
+${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/DefaultBat/DefaultBat.plugin.zsh
+```
+
+On the line containing
+
+```zsh
+   if [ -t 1 ]; then 
+      bat -P --style=plain "$@"
+    else 
+```
+
+Add all the flags you want here
+
 ## How It Works
 
 When you run `cat file.txt`:
