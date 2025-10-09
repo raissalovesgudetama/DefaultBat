@@ -1,4 +1,4 @@
-: bat-cat
+DefaultBat
 
 > Oh-My-Zsh plugin that makes [bat](https://github.com/sharkdp/bat) a drop-in replacement for `cat`
 
@@ -23,16 +23,19 @@ apt install bat
 ### Oh-My-Zsh
 
 1. Clone this repo into your custom plugins directory:
+
 ```bash
 git clone https://github.com/Rational-Idiot/DefaultBat ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/DefaultBat 
 ```
 
 2. Add `DefaultBar` to your plugins in `~/.zshrc`:
+
 ```bash
 plugins=(... DefaultBat)
 ```
 
 3. Reload your shell:
+
 ```bash
 source ~/.zshrc
 ```
@@ -62,6 +65,7 @@ fi
 ## How It Works
 
 When you run `cat file.txt`:
+
 - **In terminal**: Uses `bat` with syntax highlighting
 - **In pipe**: `cat file.txt | grep` uses real `cat`
 - **In redirect**: `cat file.txt > output` uses real `cat`
