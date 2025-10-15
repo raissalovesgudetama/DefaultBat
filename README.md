@@ -93,6 +93,30 @@ When you run `cat file.txt`:
 
 Remove `bat-cat` from your plugins list in `~/.zshrc` and reload your shell.
 
+Redone:
+# store path to the real cat command
+real_cat=$(whence -p cat)
+
+# redefine cat if bat is available
+if command -v bat > /dev/null 2>&1; then
+  function cat() {
+    # use real cat for no args/stdin/non-interactive shells
+    if [ $# -eq 0 ] || [ "$1" = "-" ]; then
+      "$real_cat" "$@"; return; }
+    fi
+
+    [[ $- == *i* ]] || { "$real_cat" "$@"; return; }
+
+    #check for disable_bat to skip bat usage if
+    if [ -z "$DISABLE_BAT" ] && [ -t 1]; then
+      #customizable bat flags or default
+      bat ${BAT_FLAGS:--P --style=plain} "$@"
+    else
+      "$real_cat" "$@"
+    fi
+  }
+fi
+
 ## License
 
 MIT
